@@ -2,42 +2,64 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gemini API Quickstart Test</title>
+  <title>ChronoTask</title>
+  <link rel="stylesheet" href="css/landing_style.css">
 </head>
 <body>
-<h1>Gemini API Quickstart Test</h1>
-<p>Click the button below to generate text using the Gemini API:</p>
-<button id="generateButton">Generate Story</button>
-<p id="output"></p>
+<header class="header">
+  <div class="logo">ChronoTask</div>
+  <nav class="nav">
+    <a href="#">Features</a>
+    <a href="#">Solutions</a>
+    <a href="#">Resources</a>
+    <a href="#">Pricing</a>
+    <a href="#" class="sign-in">Sign in</a>
+    <a href="#" class="btn">Get demo</a>
+  </nav>
+</header>
 
-<!-- Import Gemini SDK -->
-<script type="importmap">
-  {
-    "imports": {
-      "@google/generative-ai": "https://esm.run/@google/generative-ai"
-    }
-  }
-</script>
-<script type="module">
-  import { GoogleGenerativeAI } from "@google/generative-ai";
 
-  const API_KEY = "AIzaSyCHMPRU17FT8FFo9OEU4XcrOa-toPDxWwI";
-  const genAI = new GoogleGenerativeAI(API_KEY);
-  const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+<main class="hero-section">
+  <div class="dotted-background">
+    <h1 class="hero-title">Think, plan, and track<br>all in one place</h1>
+    <p class="hero-description">Efficiently manage your tasks and boost productivity.</p>
+    <button class="hero-btn">Get free demo</button>
 
-  async function generateStory() {
-    try {
-      const prompt = "How you doing.";
-      const result = await model.generateContent(prompt);
-      document.getElementById("output").innerText = result.response.text();
-    } catch (error) {
-      console.error("Error generating content:", error);
-    }
-  }
+    <div class="feature-cards">
+      <div class="card notes-card">
+        <div class="icon">📝</div>
+        <p>Take notes to keep track of crucial details and accomplish more tasks with ease.</p>
+      </div>
+      <div class="card reminders-card">
+        <div class="icon">⏰</div>
+        <p>Set reminders for meetings and important events.</p>
+      </div>
+      <div class="card integrations-card">
+        <div class="icon">🔗</div>
+        <p>100+ integrations with Gmail, Slack, Calendar, and more.</p>
+      </div>
+    </div>
+  </div>
 
-  document.getElementById("generateButton").addEventListener("click", generateStory);
-</script>
+  <!-- New bottom text box -->
+  <section class="bottom-text-box">
+    <p>Every thought matters. Every day counts. Every insight grows.</p>
+    <button>Try I AM</button>
+  </section>
+</main>
+
+
+<footer class="footer">
+  <p>© 2024 ChronoTask. All rights reserved.</p>
+  <nav>
+    <a href="#">Privacy Policy</a> |
+    <a href="#">Terms of Service</a> |
+    <a href="#">Contact Us</a>
+  </nav>
+</footer>
 </body>
 </html>
+
 

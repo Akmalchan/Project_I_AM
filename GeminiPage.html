@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gemini API Quickstart Test</title>
+</head>
+<body>
+<h1>Gemini API Quickstart Test</h1>
+<p>Click the button below to generate text using the Gemini API:</p>
+<button id="generateButton">Generate Story</button>
+<p id="output"></p>
+
+<!-- Import Gemini SDK -->
+<script type="importmap">
+  {
+    "imports": {
+      "@google/generative-ai": "https://esm.run/@google/generative-ai"
+    }
+  }
+</script>
+<script type="module">
+  import { GoogleGenerativeAI } from "@google/generative-ai";
+
+  const API_KEY = "AIzaSyCHMPRU17FT8FFo9OEU4XcrOa-toPDxWwI";
+  const genAI = new GoogleGenerativeAI(API_KEY);
+  const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+
+  async function generateStory() {
+    try {
+      const prompt = "How you doing.";
+      const result = await model.generateContent(prompt);
+      document.getElementById("output").innerText = result.response.text();
+    } catch (error) {
+      console.error("Error generating content:", error);
+    }
+  }
+
+  document.getElementById("generateButton").addEventListener("click", generateStory);
+</script>
+</body>
+</html>
