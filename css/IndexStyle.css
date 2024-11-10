@@ -1,0 +1,150 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #1e1e1e; /* Dark background */
+    color: #e0e0e0; /* Light text */
+    line-height: 1.6;
+    overflow-y: auto;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    background-color: #2b2b2b;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #fff;
+}
+
+.nav a {
+    margin-left: 20px;
+    text-decoration: none;
+    color: #e0e0e0;
+    font-weight: 500;
+}
+
+.nav .sign-in {
+    margin-right: 20px;
+}
+
+.nav .btn {
+    background-color: #007bff;
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.hero-section {
+    text-align: center;
+    padding: 20px;
+    background-color: #252525;
+    position: relative;
+}
+
+.dotted-background {
+    background: radial-gradient(#333 1px, transparent 1px);
+    background-size: 15px 15px;
+    padding: 40px;
+    border-radius: 8px;
+}
+
+.hero-title {
+    font-size: 48px;
+    font-weight: bold;
+    line-height: 1.2;
+    color: #f0f0f0;
+}
+
+.sub-title {
+    font-size: 28px;
+    color: #aaaaaa;
+    display: block;
+    margin-top: 5px;
+    margin-bottom: 30px;
+}
+
+.hero-btn {
+    background-color: #007bff;
+    color: #fff;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.feature-cards {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 50px;
+}
+
+.card {
+    background-color: #333;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    width: 250px;
+    text-align: center;
+}
+
+.icon {
+    font-size: 30px;
+    margin-bottom: 10px;
+    color: #007bff;
+}
+
+.bottom-text-box {
+    background-color: #3a3a3a;
+    color: #e0e0e0;
+    text-align: center;
+    padding: 20px;
+    border-radius: 12px;
+    margin: 50px auto;
+    max-width: 800px;
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+.bottom-text-box button {
+    background-color: #555;
+    color: #fff;
+    padding: 10px 30px;
+    border: none;
+    border-radius: 20px;
+    font-size: 14px;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+.footer {
+    background-color: #2b2b2b;
+    padding: 20px 50px;
+    text-align: center;
+    font-size: 14px;
+    color: #888;
+    border-top: 1px solid #444;
+}
+
+.footer nav a {
+    color: #999;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+.footer nav a:hover {
+    color: #ccc;
+}
