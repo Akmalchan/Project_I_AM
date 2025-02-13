@@ -80,6 +80,100 @@ body {
     color: #4db5ff;
 }
 
+.roller {
+    height: 4.125rem;
+    line-height: 4rem;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #4db5ff; /* Match the highlight color */
+    font-weight: bold;
+}
+
+#spare-time {
+    font-size: 1rem;
+    font-style: italic;
+    letter-spacing: 1rem;
+    margin-top: 0;
+    color: #a8dadc;
+}
+
+.roller #rolltext {
+    position: absolute;
+    top: 0;
+    animation: slide 5s infinite;
+}
+
+@keyframes slide {
+    0% {
+        top: 0;
+    }
+    25% {
+        top: -4rem;
+    }
+    50% {
+        top: -8rem;
+    }
+    72.5% {
+        top: -12.25rem;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .roller {
+        height: 2.6rem;
+        line-height: 2.125rem;
+    }
+
+    #spare-time {
+        font-size: 1rem;
+        letter-spacing: 0.1rem;
+    }
+
+    .roller #rolltext {
+        animation: slide-mob 5s infinite;
+    }
+
+    @keyframes slide-mob {
+        0% {
+            top: 0;
+        }
+        25% {
+            top: -2.125rem;
+        }
+        50% {
+            top: -4.25rem;
+        }
+        72.5% {
+            top: -6.375rem;
+        }
+    }
+}
+
+/* Output Text Style */
+.output-text {
+    display: none; /* Initially hidden */
+    font-size: 24px;
+    color: #4db5ff; /* Match highlight color */
+    text-align: center;
+    margin-top: 20px;
+    font-weight: bold;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+
 /* ------------------------------------------------------------------------------------------------------ Chat Bar -- */
 .input-container {
     position: relative; /* Make this container a positioning context */
@@ -93,32 +187,39 @@ body {
     max-width: 1500px; /* Maximum width on larger screens */
     min-width: 500px; /* Minimum width on smaller screens */
     min-height: 80px; /* Adjust the minimum height as needed */
-    max-height: 700px; /* Adjust the maximum height as needed */
+    max-height: calc(100vh - 40px); /* Adjust to leave space for margins */
     overflow: hidden; /* Ensure content can overflow (scrollbars visible) */
+    box-sizing: border-box; /* Include padding in height/width calculation */
 }
-
 #chat-input {
-    min-height: 80px; /* Adjust the minimum height as needed */
+    min-height: 60px; /* Initial height */
+    height: 80px; /* Ensures transition works correctly */
     flex: 1;
     background-color: transparent;
     border: none;
     color: #fff;
     font-size: 16px;
-    padding: 10px;
+    padding: 10px 10px; /* Add padding on top, bottom, left, and right */
     outline: none;
-    resize: none; /* Prevent the resize handle from appearing */
-    max-height: 700px; /* Set a max height for the textarea */
-    overflow-y: auto; /* Make it scrollable when content overflows */
-    line-height: 20px; /* Ensures only one line is shown */
-    scrollbar-width: thin; /* Optional: Make the scrollbar smaller */
-    scrollbar-color: #888 #333; /* Optional: Customize scrollbar color */
-}
+    resize: none;
+    max-height: calc(100vh - 125px);
+    overflow-y: auto;
+    line-height: 20px;
+    scrollbar-width: thin;
+    scrollbar-color: #888 #333;
+    transition: height 0.5s ease-in-out, transform 0.4s ease-in-out;
 
-/* Optional: Ensure the textarea doesn't extend beyond the container */
+}
+#chat-input.expanded {
+    height: 90vh; /* Adjust to your desired expanded height */
+    margin-top: 45px; /* Adjust to your desired gap */
+    margin-bottom: 30px; /* Adjust to your desired gap */
+    transform: translateY(-10px);
+    padding: 20px 15px; /* Extra padding for expanded state */
+}
 .input-container > textarea {
     box-sizing: border-box;
 }
-
 #chat-input::placeholder {
     color: #aaa;
 }
@@ -127,14 +228,13 @@ body {
 #chat-input::-webkit-scrollbar {
     width: 8px; /* Set the width of the scrollbar */
 }
-
 #chat-input::-webkit-scrollbar-thumb {
     background-color: #888; /* Color of the scrollbar handle */
     border-radius: 10px; /* Rounded corners for the scrollbar */
 }
-
 #chat-input::-webkit-scrollbar-track {
-    background: #333; /* Track color */
+    background: #333;
+    background-clip: padding-box;
 }
 
 
@@ -173,3 +273,4 @@ body {
 #send-button:hover {
     background-color: #0056b3;
 }
+

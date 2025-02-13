@@ -6,6 +6,7 @@
   <title>Chat Page</title>
   <link rel="stylesheet" href="css/ChatPageStyle.css">
 </head>
+
 <body>
 <div class="container">
   <!-- Sidebar -->
@@ -17,21 +18,34 @@
     <div class="settings-icon"></div>
   </div>
 
-  <!-- Chat Content -->
   <div class="chat-content">
+    <!-- Chat Messages -->
     <div class="messages">
-      <div class="message bot-message">I am <span class="highlight">AWESOME</span></div>
+      <h1 class="bot-message">
+        i AM___________________
+        <div class="roller" id="roller">
+        <span id="rolltext">
+          Sexy today<br />
+          Bombaclatting<br />
+          TU TU TU TU<br />
+          <span id="spare-time">MAX VERSTAPPEN</span><br />
+        </span>
+        </div>
+      </h1>
     </div>
+
+
+
 
     <!-- Input Field with "Enter" Button -->
     <div class="input-container">
       <textarea id="chat-input" placeholder="Type here ..." maxlength="3000"></textarea>
-      <span class="char-count" id="char-count">0 / 3000</span> <!-- Position this above the button -->
+      <span class="char-count" id="char-count">0 / 3000</span>
       <button id="send-button">End Note</button>
     </div>
-
   </div>
 </div>
+
 <script src="js/ChatPageScript.js"></script>
 </body>
 </html>
