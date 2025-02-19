@@ -1,17 +1,21 @@
 document.addEventListener('DOMContentLoaded', () => {
     const chatInput = document.getElementById('chat-input');
-    const charCount = document.querySelector('.char-count');
+    const wordCount = document.querySelector('.char-count');
+    const maxWords = 500;
     const roller = document.getElementById('roller'); // Reference to the roller element
     const container = chatInput.closest('.container'); // Adjust this selector to match your input container
     let isInputFocused = false; // Track if input field is focused
 
     // Function to update character count
-    const updateCharCount = () => {
-        charCount.textContent = `${chatInput.value.length} / 3000`;
+    const updateWordCount = () => {
+        // Split input value by spaces, filtering out empty words caused by multiple spaces
+        const wordArray = chatInput.value.trim().split(/\s+/).filter(word => word.length > 0);
+        const currentWordCount = wordArray.length;
+        wordCount.textContent = `${currentWordCount} / ${maxWords}`;
     };
 
-    // Initial character count update
-    updateCharCount();
+    // Initial word count update
+    updateWordCount();
 
     // Add focus event listener to handle height expansion and hide roller
     chatInput.addEventListener('focus', () => {
@@ -29,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Add input event listener to update character count and hide roller
     chatInput.addEventListener('input', () => {
-        updateCharCount();
+        updateWordCount();
         // Hide roller animation as long as user is typing
         if (chatInput.value.trim()) {
             roller.style.display = 'none';

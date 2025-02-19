@@ -75,7 +75,12 @@ body {
     font-size: 32px;
     font-weight: 300;
 }
-
+.bot-message {
+    display: flex;
+    align-items: center; /* Keeps "I AM" and animation aligned */
+    gap: 8px; /* Adds space between the static and animated text */
+    white-space: nowrap; /* Prevents unwanted line breaks */
+}
 .highlight {
     color: #4db5ff;
 }
@@ -86,11 +91,13 @@ body {
     position: relative;
     overflow: hidden;
     width: 100%;
-    display: flex;
+    display: inline-block; /* Keep it inline */
+    vertical-align: baseline; /* Aligns it properly with the text */
     justify-content: center;
     align-items: center;
     color: #4db5ff; /* Match the highlight color */
     font-weight: bold;
+    margin-left: 8px; /* Adjust spacing as needed */
 }
 
 #spare-time {
@@ -102,9 +109,10 @@ body {
 }
 
 .roller #rolltext {
-    position: absolute;
-    top: 0;
+    position: relative;
+    display: inline-block;
     animation: slide 5s infinite;
+    white-space: nowrap; /* Prevent line breaks */
 }
 
 @keyframes slide {
@@ -163,7 +171,6 @@ body {
     font-weight: bold;
     animation: fadeIn 0.5s ease-in-out;
 }
-
 @keyframes fadeIn {
     from {
         opacity: 0;
