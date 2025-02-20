@@ -1,50 +1,81 @@
 document.addEventListener('DOMContentLoaded', () => {
     const chatInput = document.getElementById('chat-input');
     const wordCount = document.querySelector('.char-count');
+    const sendButton = document.getElementById('send-button');
     const maxWords = 500;
-    const roller = document.getElementById('roller'); // Reference to the roller element
-    const container = chatInput.closest('.container'); // Adjust this selector to match your input container
-    let isInputFocused = false; // Track if input field is focused
+    const roller = document.getElementById('roller'); 
+    const container = chatInput.closest('.container');
+    let isInputFocused = false;
 
-    // Function to update character count
+    // Update word count
     const updateWordCount = () => {
-        // Split input value by spaces, filtering out empty words caused by multiple spaces
         const wordArray = chatInput.value.trim().split(/\s+/).filter(word => word.length > 0);
-        const currentWordCount = wordArray.length;
-        wordCount.textContent = `${currentWordCount} / ${maxWords}`;
+        wordCount.textContent = `${wordArray.length} / ${maxWords}`;
     };
 
-    // Initial word count update
     updateWordCount();
 
-    // Add focus event listener to handle height expansion and hide roller
+    // Focus event to expand input
     chatInput.addEventListener('focus', () => {
-        if (!chatInput.classList.contains('expanded')) {
-            chatInput.classList.add('expanded');
-        }
-        roller.style.display = 'none'; // Hide the roller animation
-        isInputFocused = true; // Mark that the input is focused
+        chatInput.classList.add('expanded');
+        roller.style.display = 'none';
+        isInputFocused = true;
     });
 
-    // Add blur event listener to reset focus flag
+    // Blur event to reset focus
     chatInput.addEventListener('blur', () => {
-        isInputFocused = false; // Mark that the input is no longer focused
+        isInputFocused = false;
     });
 
-    // Add input event listener to update character count and hide roller
-    chatInput.addEventListener('input', () => {
-        updateWordCount();
-        // Hide roller animation as long as user is typing
-        if (chatInput.value.trim()) {
+    // Update word count on input
+    chatInput.addEventListener('input', updateWordCount);
+
+    // Hide roller if clicking outside
+    document.addEventListener('click', (event) => {
+        if (!container.contains(event.target) && !isInputFocused) {
             roller.style.display = 'none';
         }
     });
 
-    // Add document click listener to hide the roller only when clicking outside the container
-    document.addEventListener('click', (event) => {
-        const clickedInsideContainer = container.contains(event.target);
-        if (!clickedInsideContainer && !isInputFocused) {
-            roller.style.display = 'none'; // Keep the roller hidden when clicking outside
+    // Send button functionality
+    sendButton.addEventListener('click', () => {
+        const userInput = chatInput.value.trim();
+
+        if (userInput) {
+            saveJournalEntry(userInput);
+            chatInput.value = "";
+            updateWordCount();
+            alert("Journal entry saved successfully!");
+        } else {
+            alert("Please enter some text before ending the note.");
         }
     });
+
+    // Function to save journal entry to localStorage
+    function saveJournalEntry(text) {
+        const now = new Date();
+        const currentMonth = now.toLocaleString("default", { month: "long" });
+        const currentYear = now.getFullYear();
+        const monthYearKey = `${currentMonth} ${currentYear}`;
+
+        let journalData = JSON.parse(localStorage.getItem("journalData")) || {};
+
+        // Create the month if it doesn't exist
+        if (!journalData[monthYearKey]) {
+            journalData[monthYearKey] = { entries: [] };
+        }
+
+        // Create new entry object
+        const newEntry = {
+            text: text,
+            createdAt: now.toISOString(),
+            editableUntil: new Date(now.getTime() + 15 * 60000).toISOString() // 15 min later
+        };
+
+        // Add the new entry at the beginning of the array
+        journalData[monthYearKey].entries.unshift(newEntry);
+
+        // Save to localStorage
+        localStorage.setItem("journalData", JSON.stringify(journalData));
+    }
 });

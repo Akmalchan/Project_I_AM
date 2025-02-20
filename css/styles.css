@@ -1,0 +1,32 @@
+body {
+    background-color: #333;
+    color: #fff;
+    font-family: 'Courier New', Courier, monospace;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.title {
+    font-family: 'Kumar One Outline', cursive;
+    font-size: 5rem;
+}
+
+.subtitle {
+    font-size: 1.5rem;
+    margin-top: 20px;
+}
+
+.try-now {
+    font-size: 1rem;
+    margin-top: 30px;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.try-now:hover {
+    color: #aaa;
+}
