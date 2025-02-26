@@ -2,16 +2,26 @@ document.addEventListener('DOMContentLoaded', () => {
     const chatInput = document.getElementById('chat-input');
     const wordCount = document.querySelector('.char-count');
     const sendButton = document.getElementById('send-button');
-    const maxWords = 500;
+    const maxWords = 1000;
     const roller = document.getElementById('roller'); 
     const container = chatInput.closest('.container');
     let isInputFocused = false;
 
     // Update word count
     const updateWordCount = () => {
-        const wordArray = chatInput.value.trim().split(/\s+/).filter(word => word.length > 0);
+        let text = chatInput.value.trim();
+        let wordArray = text.length > 0 ? text.split(/\s+/) : [];
+
+        if (wordArray.length > maxWords) {
+            // Limit input by keeping only the first 500 words
+            wordArray = wordArray.slice(0, maxWords);
+            chatInput.value = wordArray.join(" "); // Update textarea with trimmed words
+        }
+
         wordCount.textContent = `${wordArray.length} / ${maxWords}`;
     };
+
+
 
     updateWordCount();
 

@@ -199,29 +199,24 @@ body {
     box-sizing: border-box; /* Include padding in height/width calculation */
 }
 #chat-input {
-    min-height: 60px; /* Initial height */
-    height: 80px; /* Ensures transition works correctly */
-    flex: 1;
+    min-height: 60px;
+    height: 80px;
+    width: 100%; /* Take full width */
     background-color: transparent;
     border: none;
     color: #fff;
     font-size: 16px;
-    padding: 10px 10px; /* Add padding on top, bottom, left, and right */
+    padding: 10px;
     outline: none;
     resize: none;
     max-height: calc(100vh - 125px);
+    transition: all 0.3s ease-in-out; /* Smooth transition */
     overflow-y: auto;
-    line-height: 20px;
-    scrollbar-width: thin;
-    scrollbar-color: #888 #333;
-    transition: height 0.5s ease-in-out, transform 0.4s ease-in-out;
-
 }
 #chat-input.expanded {
     height: 90vh; /* Adjust to your desired expanded height */
-    margin-top: 45px; /* Adjust to your desired gap */
-    margin-bottom: 30px; /* Adjust to your desired gap */
-    transform: translateY(-10px);
+    margin-top: 0px; /* Adjust to your desired gap */
+    margin-bottom: 5px; /* Adjust to your desired gap */
     padding: 20px 15px; /* Extra padding for expanded state */
 }
 .input-container > textarea {
@@ -230,7 +225,6 @@ body {
 #chat-input::placeholder {
     color: #aaa;
 }
-
 /* Style the scrollbar for Webkit browsers (Chrome, Safari, etc.) */
 #chat-input::-webkit-scrollbar {
     width: 8px; /* Set the width of the scrollbar */
@@ -242,28 +236,34 @@ body {
 #chat-input::-webkit-scrollbar-track {
     background: #333;
     background-clip: padding-box;
+    margin-top: 8px; /* Adjust to your desired gap */
 }
 
 
 /* ----------------------------------------------------------------------------------------- Chat Bar Enter Button -- */
 .input-container {
+    position: relative;
     display: flex;
-    align-items: center;
+    flex-direction: column; /* Stack elements in a column */
+    align-items: stretch; /* Make sure items take full width */
     background-color: #333;
     padding: 10px;
     border-radius: 20px;
-    margin: 20px auto; /* Center the input bar horizontally */
+    margin: 20px auto;
     width: 100%;
     max-width: 800px;
     min-width: 300px;
-    gap: 10px; /* Space between input and button */
-    justify-content: flex-end;
+    box-sizing: border-box;
+}
+.bottom-container {
+    display: flex;
+    justify-content: space-between; /* Space elements apart */
+    align-items: center;
+    margin-top: 10px; /* Space between textarea and bottom row */
 }
 .char-count {
-    position: absolute;
-    bottom: 52px;
-    right: 10px; /* Align to the right of the container */
-    font-size: 12px;
+    margin-left: 20px;
+    font-size: 13px;
     color: #aaa;
 }
 #send-button {
@@ -275,7 +275,6 @@ body {
     cursor: pointer;
     font-size: 16px;
     transition: background-color 0.3s;
-    margin-top: auto; /* Pushes the button to the bottom of the container */
 }
 #send-button:hover {
     background-color: #0056b3;
